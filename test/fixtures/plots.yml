@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  length: 1.5
+  width: 1.5
+  sun: MyString
+  garden_id: 1
+
+two:
+  name: 
+  length: 1.5
+  width: 1.5
+  sun: MyString
+  garden_id: 1
