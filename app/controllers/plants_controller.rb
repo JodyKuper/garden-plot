@@ -3,45 +3,46 @@ class PlantsController < ApplicationController
 
   # GET /plants
   def index
-    @plants = Plant.all
+    plants = Plant.all
 
-    render json: @plants
+    render json: plants
   end
 
   # GET /plants/1
   def show
-    render json: @plant
+    render json: plant
   end
 
   # POST /plants
   def create
-    @plant = Plant.new(plant_params)
+    plant = Plant.new(plant_params)
+   
 
-    if @plant.save
-      render json: @plant, status: :created, location: @plant
+    if plant.save
+      render json: plant, status: :created, location: plant
     else
-      render json: @plant.errors, status: :unprocessable_entity
+      render json: plant.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /plants/1
   def update
-    if @plant.update(plant_params)
-      render json: @plant
+    if plant.update(plant_params)
+      render json: plant
     else
-      render json: @plant.errors, status: :unprocessable_entity
+      render json: plant.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /plants/1
   def destroy
-    @plant.destroy
+    plant.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plant
-      @plant = Plant.find(params[:id])
+      plant = Plant.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

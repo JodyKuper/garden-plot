@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 
 export const Home = ({users}) => {
 
@@ -36,12 +36,14 @@ console.log(users)
 	   </Card>
 	 </Link>:
         <Link to={`gardens/${u.garden.id}`}>
+			
           <Card
             border="danger"
             style={{ width: "50rem", 
 			display: "inline-block",
 			border: "solid black",
-			margin: "10px"
+			margin: "10px",
+			bg: "black"
 		}}
           >
             <Card.Img varient="top" src={u.garden.image.url} />

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import {useParams, Link} from "react-router-dom"
-// import { View, Text } from "react-native"
 
- const Garden = () => {
+
+ const Garden = ({user}) => {
 	 const[garden, setGarden]= useState([])
 	 let {id} =useParams()
 
@@ -22,14 +22,14 @@ import {useParams, Link} from "react-router-dom"
 		
 		<div >
 			
-			<h3>your garden</h3>
+			<h3></h3>
 			{garden.plots && garden.plots.map(
 			(g) => 
 			<Link to={`/plot/${g.id}`}>
 			<p style={{display: "inline-block",
 				width: `${g.width*20}px`,
 				height: `${g.length*30}px`,
-				background: "green",
+				background: "#80461b",
 				margin: "5px"
 			}}>{g.name}<br></br>{g.sun}</p>
 			</Link>

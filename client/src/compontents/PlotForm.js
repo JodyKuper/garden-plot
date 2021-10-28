@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 	 const[length, setLength]=useState("")
 	 const[sun, setSun]=useState("")
 	 
+	 
 	 const handleChange=(e)=> {
 		if (e.target.id === "name") setName(e.target.value)
 		if (e.target.id === "width") setWidth(e.target.value)
@@ -15,7 +16,7 @@ import { useEffect, useState } from "react";
 		if (e.target.id === "sun") setSun(e.target.value)
 
 	 }
-// console.log(user.garden.id)
+console.log(user.garden.id)
 	 const plotSubmit=(e)=> {
 		e.preventDefault()
 		const postGame= {
@@ -93,6 +94,14 @@ import { useEffect, useState } from "react";
 
 		</Form>
 
+		<p style={{display: "inline-block",
+				width: `${width*20}px`,
+				height: `${length*30}px`,
+				background: "#80461b",
+				margin: "5px"
+			}}>{name}<br></br>{sun}<br></br>
+			</p>
+			
 
 
 		</div>

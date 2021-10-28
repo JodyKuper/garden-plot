@@ -9,13 +9,13 @@ import Login from "./compontents/Login"
 import GardenForm from "./compontents/GardenForm"
 import PlotForm from "./compontents/PlotForm"
 import Plot from "./compontents/Plot"
-import PlantForm from "./compontents/PlantForm"
 import './App.css';
 
 function App() {
   const [user, setUser]=useState({})
   const [loggedIn, setLoggedIn]= useState(false)
   const [users, setUsers] = useState([]);
+  const [plot, setPlot]= useState([])
 //   const[garden, setGarden]= useState([])
   let history =useHistory()
 
@@ -68,7 +68,7 @@ useEffect(()=>{
           <Home users={users}/>
         </Route>
         <Route exact path= "/gardens/:id">
-          <Garden/>
+          <Garden user={user}/>
         </Route>
         <Route exact path='/signup'>
           <Signup setLoggedIn={setLoggedIn} setUser={setUser} />
@@ -89,12 +89,8 @@ useEffect(()=>{
           )}
         </Route>
 		
-		<Route exact path="/plantform">
-			<PlantForm/>
-		</Route>
-		
 		<Route exact path="/plot/:id">
-			<Plot/>
+			<Plot user={user}/>
 		</Route>
       </Switch>
       
