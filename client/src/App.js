@@ -13,21 +13,20 @@ import './App.css';
 
 function App() {
   const [user, setUser]=useState({})
+  const [loaded, setLoaded]= useState(false)
   const [loggedIn, setLoggedIn]= useState(false)
   const [users, setUsers] = useState([]);
-  const [plot, setPlot]= useState([])
-//   const[garden, setGarden]= useState([])
   let history =useHistory()
 
-  
 useEffect(()=>{
     fetch("/me")
     .then((res)=>res.json())
     .then((data)=> {
-    if (!data.error) {
-      setUser(data)
-      setLoggedIn(true)
-    }
+        if (!data.error) {
+          setUser(data)
+          setLoggedIn(true)
+        }
+        setLoaded(true);
     })
   },[])
 
@@ -41,34 +40,36 @@ useEffect(()=>{
       });
   }, []);
 
- 
-  
-
   const handleLogout=(e)=> {
     e.preventDefault()
     const delObj= {
       method: "Delete"
     }
     fetch("/logout", delObj)
-      
       .then (()=> {
-       
         setLoggedIn(false)
         setUser({})
         history.push("/")
       })
-  } 
-  
+  }
+
+  if (!loaded) {
+      return <div/>;
+  }
+
   return (
     <div className="App">
       <Header loggedIn={loggedIn} handleLogout={handleLogout}/>
-      <br></br>
+      <br/>
       <Switch>
         <Route exact path="/">
           <Home users={users}/>
         </Route>
         <Route exact path= "/gardens/:id">
-          <Garden user={user}/>
+            {loggedIn ?   (<Garden user={user}/>
+            ) : (
+                <Redirect to= "/login"/>
+            )}
         </Route>
         <Route exact path='/signup'>
           <Signup setLoggedIn={setLoggedIn} setUser={setUser} />
@@ -88,12 +89,10 @@ useEffect(()=>{
           <Redirect to= "/login"/>
           )}
         </Route>
-		
 		<Route exact path="/plot/:id">
 			<Plot user={user}/>
 		</Route>
       </Switch>
-      
     </div>
   );
 }

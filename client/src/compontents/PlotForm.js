@@ -1,14 +1,14 @@
 import React from 'react'
 import { Form, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
  const PlotForm = ({user}) => {
 	 const[name, setName]=useState("")
 	 const[width, setWidth]=useState("")
 	 const[length, setLength]=useState("")
 	 const[sun, setSun]=useState("")
-	 
-	 
+
+
 	 const handleChange=(e)=> {
 		if (e.target.id === "name") setName(e.target.value)
 		if (e.target.id === "width") setWidth(e.target.value)
@@ -30,22 +30,22 @@ console.log(user.garden.id)
 				length,
 				sun,
 				garden_id:user.garden.id
-			})	
+			})
 			}
 			fetch("/plots", postGame)
 			.then ((res)=> res.json())
 			.then((data) => {
 				console.log(data)
 				// debugger
-				if (!!data.id){	
+				if (!!data.id){
 				console.log(data)
-				
+
 				}else{
 					alert(data["error"])
-				}	
+				}
 			})
 	 }
-	 
+
 	 return (
 		<div>
 		<h2>make plots</h2>
@@ -87,9 +87,9 @@ console.log(user.garden.id)
 			value={sun}
 			onChange={handleChange}
 			/>
-          
+
 		</Form.Group>
-		<br></br>			
+		<br></br>
 		<Button type="submit">Submit</Button>
 
 		</Form>
@@ -101,7 +101,7 @@ console.log(user.garden.id)
 				margin: "5px"
 			}}>{name}<br></br>{sun}<br></br>
 			</p>
-			
+
 
 
 		</div>

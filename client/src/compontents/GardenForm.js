@@ -1,10 +1,9 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const GardenForm = ({ user }) => {
-  const [garden, setGarden] = [];
   const [image, setImage] = useState({
     image: "",
   });
@@ -35,7 +34,7 @@ const GardenForm = ({ user }) => {
         }
       });
   };
-  
+
 
   return (
     <div>
