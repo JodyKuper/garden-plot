@@ -30,7 +30,7 @@ const Login = ({setUser, setLoggedIn}) => {
 		fetch("/login", loginObj)
 		.then ((res)=> res.json())
 		.then((data) => {
-			console.log(data)
+			// console.log(data)
 			if (!!data.id) {
 				setUser(data)
 				setLoggedIn(true)

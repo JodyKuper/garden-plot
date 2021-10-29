@@ -54,7 +54,7 @@ console.log(profileImage)
       })
       
   };
-  console.log(setUser)
+//   console.log(setUser)
   return (
     <div>
         <h3>Sign up</h3>
