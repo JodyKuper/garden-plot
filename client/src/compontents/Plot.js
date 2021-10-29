@@ -60,7 +60,7 @@ console.log(user)
 		});
 	  
 	  };
-	console.log(plot.plants)
+	// console.log(plot.plants)
 	return (
 		<div>
 			plot

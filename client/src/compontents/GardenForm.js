@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const GardenForm = ({ user }) => {
-  const [garden, setGarden] = [];
+  const [garden, setGarden] = useState([]);
   const [image, setImage] = useState({
     image: "",
   });
@@ -30,13 +30,14 @@ const GardenForm = ({ user }) => {
       .then((data) => {
         if (data.id) {
           setImage(data);
+	  setGarden(data)
         } else {
           alert(data["error"]);
         }
       });
   };
   
-
+console.log(user.garden)
   return (
     <div>
       make garden
@@ -52,7 +53,8 @@ const GardenForm = ({ user }) => {
         <br></br>
         <Button type="submit">Submit</Button>
       </Form>
-	<Link to= "/plotform">Make plots</Link>
+      {!user.garden ? <p></p> :
+	<Link to= "/plotform">Make plots</Link>}
     </div>
   );
 };

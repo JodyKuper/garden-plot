@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 		if (e.target.id === "sun") setSun(e.target.value)
 
 	 }
-console.log(user.garden.id)
+// console.log(user.garden.id)
 	 const plotSubmit=(e)=> {
 		e.preventDefault()
 		const postGame= {
@@ -79,16 +79,17 @@ console.log(user.garden.id)
 			/>
 			<br></br>
 			<br></br>
-		<Form.Control
+		{ <Form.Control
 			size=""
 			type="text"
 			id="sun"
 			placeholder=""
 			value={sun}
 			onChange={handleChange}
-			/>
+			/> }
           
 		</Form.Group>
+		
 		<br></br>			
 		<Button type="submit">Submit</Button>
 
