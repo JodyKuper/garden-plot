@@ -24,7 +24,7 @@ class GardensController < ApplicationController
     if garden.save
       render json: garden, status: :created
     else
-      render json: garden.errors, status: :unprocessable_entity
+      render json: {error: "file needed"}, status: :unprocessable_entity
     end
   end
 
@@ -50,6 +50,6 @@ class GardensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def garden_params
-      params.permit(:season, :user_id, :image)
+      params.permit(:season, :user_id, :image, plots_attributes: [:name])
     end
 end

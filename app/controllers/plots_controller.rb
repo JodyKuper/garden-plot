@@ -21,7 +21,7 @@ class PlotsController < ApplicationController
     if plot.save
       render json: plot, status: :created, location: plot
     else
-      render json: plot.errors, status: :unprocessable_entity
+      render json:  {error: "plot name taken"}, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class PlotsController < ApplicationController
     if plot.update(plot_params)
       render json: plot
     else
-      render json: plot.errors, status: :unprocessable_entity
+      render json: {error: "plot name taken"}, status: :unprocessable_entity
     end
   end
 

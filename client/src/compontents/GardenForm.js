@@ -1,10 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 
 const GardenForm = ({ user }) => {
   const [garden, setGarden] = useState([]);
+  const history=useHistory()
   const [image, setImage] = useState({
     image: "",
   });
@@ -31,13 +32,12 @@ const GardenForm = ({ user }) => {
         if (data.id) {
           setImage(data);
 	  setGarden(data)
+	  history.push("/")
         } else {
           alert(data["error"]);
         }
       });
   };
-  
-console.log(user.garden)
   return (
     <div>
       make garden

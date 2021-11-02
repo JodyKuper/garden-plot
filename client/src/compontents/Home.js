@@ -1,14 +1,9 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Card, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 export const Home = ({users}) => {
 
-  const history= useHistory()
-
-
-console.log(users)
   return (
     <div>
       {users.map((u) => !u.garden ? 
@@ -36,8 +31,8 @@ console.log(users)
 	   </Card>
 	 </Link>:
         <Link to={`gardens/${u.garden.id}`}>
-			
-          <Card
+        
+		<Card
             border="danger"
             style={{ width: "50rem", 
 			display: "inline-block",

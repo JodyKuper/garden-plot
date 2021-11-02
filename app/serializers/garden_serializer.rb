@@ -1,7 +1,14 @@
 class GardenSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :season, :image
+  attributes :id, :season, :image, :plots
   has_many :plots
+  belongs_to :user
+  # def plots
+  #   ActiveModel::SerializableResource.new(object.plots,  each_serializer: PlotSerializer)
+  # end
+
+
+  
 
   def image
     return unless object.image.attached?

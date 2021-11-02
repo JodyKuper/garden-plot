@@ -1,29 +1,29 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import {useParams, Link} from "react-router-dom"
+import {useParams, Link, Redirect} from "react-router-dom"
 import { Form, Button } from "react-bootstrap";
-// import {plantForm} from "./compontents/plantForm"
-
- const Plot = ({user}) => {
+import PlotView from "./PlotView"
+ 
+const Plot = ({user}) => {
 	const[plot, setPlot]= useState([])
-	const[name,setName]=useState("")
-	const[neededSun, setNeededSun]=useState("")
+	const[name, setName]=useState("")
+	const[plants, setPlants]=useState([])
 	let {id} =useParams()
-	
-
+console.log(plants)
 	const handleChange=(e)=> {
 		if (e.target.id === "name") setName(e.target.value)
-		if (e.target.id === "need_sun") setNeededSun(e.target.value)
+		
+		
 	}
 
 	useEffect(()=> {
 		fetch(`/plots/${id}`)
 		 	.then((res) => res.json())
 		    .then ((data)=> {
-		
 				setPlot(data)
+				setPlants(data.plants)
 			})
-	 }, [])
+	 }, [id])
 
 	 const plantSubmit=(e)=> {
 		e.preventDefault()
@@ -34,23 +34,26 @@ import { Form, Button } from "react-bootstrap";
 				},
 			body: JSON.stringify({
 				name,
-				plot_id:plot.id	
+				plot_id: plot.id	
 			})	
 			}
 			fetch("/plants", postGame)
 			.then ((res)=> res.json())
 			.then((data) => {
-				console.log(data)
-				// debugger
+				console.log(data.name)
+				// debugger	
 				if (!!data.id){	
-				console.log(data)
-				
+				setPlants([...plants, data])
 				}else{
 					alert(data["error"])
 				}	
 			})
-	 }
-console.log(user)
+	 setName('')
+		}
+
+	//  if (!user || !user.garden || user.garden.id !== parseInt(id)) {
+	// 	return <Redirect to={'/login'}/>;
+	
 	 const handleDelete = () => {
 		fetch(`/plots/${id}`, {
 		  method: "DELETE",
@@ -60,57 +63,44 @@ console.log(user)
 		});
 	  
 	  };
-	// console.log(plot.plants)
+	
 	return (
 		<div>
 			plot
 			<br></br>
             
-			<p style={{display: "inline-block",
-				width: `${plot.width*20}px`,
-				height: `${plot.length*30}px`,
-				background: "#80461b",
-				margin: "5px"
-			}}>{plot.name}<br></br>{plot.sun}<br></br>
-			</p>
-			{ plot.plants && plot.plants.map((p)=>{{console.log(p)}
-				<h4>{p.name}</h4>
- })}
-	<br></br>	
-Plant!!!
-		<Form onSubmit={plantSubmit}>
-		<Form.Group controlId="formFile" className="mb-3">
-		<Form.Control
-			size=""
-			type="text"
-			id="name"
-			placeholder="name"
-			value={name}
-			onChange={handleChange}
-			/>
+			<PlotView plot={plot} plants={plants} />
 			<br></br>
-			<br></br>
-		<Form.Control
-			size=""
-			type="text"
-			id="need_sun"
-			placeholder=""
-			value={''}
-			onChange={handleChange}
-			/>
+			Plant!!!
+			<Form onSubmit={plantSubmit}>
+				<Form.Group controlId="formFile" className="mb-3">
+					<Form.Control
+						size=""
+						type="text"
+						id="name"
+						placeholder="name"
+						value={name}
+						onChange={handleChange}
+					/>
+					<br></br>
+					<br></br>
+					
 		
-          
-		</Form.Group>
-		<br></br>			
-		<Button type="submit">Submit</Button>
+</Form.Group>
+				<br></br>
+				<Button type="submit">Submit</Button>
 
-		</Form>
-		
-		<Link onClick={() => handleDelete()} to={`/gardens/${user.garden.id}`}>
-        DELETE PLOT
-      </Link>
-		</div>
-		
+			</Form>
+
+			<Link onClick={() => handleDelete()} to={`/gardens/${user && user.garden && user.garden.id}`}>
+				DELETE PLOT
+			</Link>
+			<br/>
+			<Link to={`/gardens/${user && user.garden && user.garden.id}`}>
+				GARDEN
+			</Link>
+		</div>	
 	)
-}
+	}
+
 export default Plot

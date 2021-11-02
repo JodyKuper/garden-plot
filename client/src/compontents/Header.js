@@ -11,7 +11,7 @@ const Header = ({ loggedIn, handleLogout }) => {
 		<header>
 		 <Button onClick={handleLogout}>Logout</Button><br></br>
 		 <br></br>
-		 <Link to= "/gardenForm">Make Your Garden</Link>
+		 
     		  </header>
     )
  	 } else {

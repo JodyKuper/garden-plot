@@ -1,42 +1,35 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import {useParams, Link} from "react-router-dom"
-
-
- const Garden = ({user}) => {
-	 const[garden, setGarden]= useState([])
+import {useParams, Link, Redirect} from "react-router-dom";
+import PlotView from "./PlotView"
+ 
+const Garden = ({user, plants}) => {
+	 const[garden, setGarden]= useState({})
 	 let {id} =useParams()
 
 	 useEffect(()=> {
 		fetch(`/gardens/${id}`)
 		 	.then((res) => res.json())
 		    .then ((data)=> {
-		
 				setGarden(data)
 			})
-	 }, [])
+		}, [id])
+
+		// if (!user || !user.garden || user.garden.id !== parseInt(id)) {
+		// 	return <Redirect to={'/login'}/>;
+		// }
 	
-	
-   
-	return (
+		return (
 		
-		<div >
-			
+			<div >		
+			<Link to="/plotform">make a plot</Link>
 			<h3></h3>
-			{garden.plots && garden.plots.map(
-			(g) => 
-			<Link to={`/plot/${g.id}`}>
-			<p style={{display: "inline-block",
-				width: `${g.width*20}px`,
-				height: `${g.length*30}px`,
-				background: "#80461b",
-				margin: "5px"
-			}}>{g.name}<br></br>{g.sun}</p>
-			</Link>
+			{garden.plots && garden.plots.map((plot) =>
+				<Link key={`plot-${plot.id}`} to={`/plot/${plot.id}`}>
+					<PlotView plot={plot} />
+				</Link>
 			)}
-			<Link to="/plotform">plots</Link>
 		</div>
-	
 	)
 }
 export default Garden;

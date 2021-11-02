@@ -1,14 +1,15 @@
 import React from 'react'
 import { Form, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import {  Redirect, useHistory } from "react-router-dom"
 
  const PlotForm = ({user}) => {
 	 const[name, setName]=useState("")
 	 const[width, setWidth]=useState("")
 	 const[length, setLength]=useState("")
 	 const[sun, setSun]=useState("")
-	 
-	 
+	 const history= useHistory()
+
 	 const handleChange=(e)=> {
 		if (e.target.id === "name") setName(e.target.value)
 		if (e.target.id === "width") setWidth(e.target.value)
@@ -19,7 +20,7 @@ import { useEffect, useState } from "react";
 // console.log(user.garden.id)
 	 const plotSubmit=(e)=> {
 		e.preventDefault()
-		const postGame= {
+		const postPlot= {
 			method: "POST",
 			headers: {
 			"Content-Type": "application/json",
@@ -32,14 +33,14 @@ import { useEffect, useState } from "react";
 				garden_id:user.garden.id
 			})	
 			}
-			fetch("/plots", postGame)
+			fetch("/plots", postPlot)
 			.then ((res)=> res.json())
 			.then((data) => {
 				console.log(data)
 				// debugger
 				if (!!data.id){	
 				console.log(data)
-				
+				history.push(`/gardens/${user.garden.id}`)
 				}else{
 					alert(data["error"])
 				}	
@@ -65,7 +66,7 @@ import { useEffect, useState } from "react";
 			size=""
 			type="text"
 			id="width"
-			placeholder="feet"
+			placeholder="width"
 			value={width}
 			onChange={handleChange}
 			/>
@@ -73,7 +74,7 @@ import { useEffect, useState } from "react";
 			size=""
 			type="text"
 			id="length"
-			placeholder="feet"
+			placeholder="length"
 			value={length}
 			onChange={handleChange}
 			/>
@@ -90,8 +91,10 @@ import { useEffect, useState } from "react";
           
 		</Form.Group>
 		
-		<br></br>			
-		<Button type="submit">Submit</Button>
+		<br></br>	
+				
+		<Button type="submit" >Submit</Button>
+				
 
 		</Form>
 

@@ -15,13 +15,15 @@ class PlantsController < ApplicationController
 
   # POST /plants
   def create
+    
+    # plot=Plot.find-by(params[:id])
     plant = Plant.new(plant_params)
-   
+    # plant.plot=plot.id
 
     if plant.save
       render json: plant, status: :created, location: plant
     else
-      render json: plant.errors, status: :unprocessable_entity
+      render json: {error: "need plant"}, status: :unprocessable_entity
     end
   end
 
