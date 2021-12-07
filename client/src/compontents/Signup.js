@@ -27,13 +27,7 @@ console.log(profileImage)
 	final.append("password",password)
 	final.append("location",location)
 	final.append("image", profileImage.image[0])
-	// for(const key in profileImage) {
-	// 	console.log(key)
-	// 	for(const image in profileImage[key]){
-	// 		console.log(image)
-	// 		final.append("image[]",profileImage[key][image])
-	// 	}
-	// }
+	
 	console.log(final.get("image"))
     const signupObj = {
       method: "POST",
@@ -48,13 +42,12 @@ console.log(profileImage)
           setLoggedIn(true);
           history.push("/gardenform");
         }else {
-         
           alert(data["error"])
         }
       })
       
   };
-//   console.log(setUser)
+
   return (
     <div>
         <h3>Sign up</h3>

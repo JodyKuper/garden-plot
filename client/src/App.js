@@ -60,6 +60,7 @@ useEffect(()=>{
   return (
     <div className="App">
       <Header loggedIn={loggedIn} handleLogout={handleLogout}/>
+		<h1>Garden Plots</h1>
       <br/>
       <Switch>
         <Route exact path="/">

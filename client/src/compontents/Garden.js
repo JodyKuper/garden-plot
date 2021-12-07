@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import {useParams, Link, Redirect} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 import PlotView from "./PlotView"
  
 const Garden = ({user, plants}) => {
@@ -20,13 +20,13 @@ const Garden = ({user, plants}) => {
 		// }
 	
 		return (
-		
 			<div >		
 			<Link to="/plotform">make a plot</Link>
-			<h3></h3>
+			<br/>
 			{garden.plots && garden.plots.map((plot) =>
 				<Link key={`plot-${plot.id}`} to={`/plot/${plot.id}`}>
 					<PlotView plot={plot} />
+					<p>{plot.plants && plot.plants}</p>
 				</Link>
 			)}
 		</div>

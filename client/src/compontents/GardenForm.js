@@ -40,7 +40,7 @@ const GardenForm = ({ user }) => {
   };
   return (
     <div>
-      make garden
+      <h3>make garden</h3>
       <Form onSubmit={handleGarden}>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control
@@ -55,6 +55,7 @@ const GardenForm = ({ user }) => {
       </Form>
       {!user.garden ? <p></p> :
 	<Link to= "/plotform">Make plots</Link>}
+	<br/>
     </div>
   );
 };

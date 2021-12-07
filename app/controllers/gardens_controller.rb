@@ -5,7 +5,7 @@ class GardensController < ApplicationController
   def index
     gardens = Garden.all.with_attached_image
 
-    render json: gardens, include: ["image", "plots"]
+    render json: gardens, include: ["image", "plots.plants"]
   end
 
   # GET /gardens/1

@@ -1,11 +1,12 @@
 body {
-  background-color:green;
+  background-color:greenyellow;
   font-family: fantasy;
+  color: black;
 }
 
 .App {
   text-align: center;
-  background-color: green;
+  background-color:greenyellow;
   
 }
 

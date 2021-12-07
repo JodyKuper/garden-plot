@@ -5,7 +5,7 @@ class PlotsController < ApplicationController
   def index
     plots = Plot.all
 
-    render json: plots
+    render json: plots, include: ["plants"]
   end
 
   # GET /plots/1

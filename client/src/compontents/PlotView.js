@@ -9,8 +9,8 @@ import React from "react";
             height: `${plot.length * 30}px`,
             background: "#80461b",
             margin: "5px"
-        }}><h3>{plot.name}</h3>
-            
+        }}>{plot.name}
+            <br/>
             {plot.sun}
             <br/>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import {  Redirect, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
  const PlotForm = ({user}) => {
 	 const[name, setName]=useState("")
@@ -15,9 +15,8 @@ import {  Redirect, useHistory } from "react-router-dom"
 		if (e.target.id === "width") setWidth(e.target.value)
 		if (e.target.id === "length") setLength (e.target.value)
 		if (e.target.id === "sun") setSun(e.target.value)
-
 	 }
-// console.log(user.garden.id)
+
 	 const plotSubmit=(e)=> {
 		e.preventDefault()
 		const postPlot= {
@@ -36,10 +35,7 @@ import {  Redirect, useHistory } from "react-router-dom"
 			fetch("/plots", postPlot)
 			.then ((res)=> res.json())
 			.then((data) => {
-				console.log(data)
-				// debugger
 				if (!!data.id){	
-				console.log(data)
 				history.push(`/gardens/${user.garden.id}`)
 				}else{
 					alert(data["error"])
@@ -90,24 +86,16 @@ import {  Redirect, useHistory } from "react-router-dom"
 			/> }
           
 		</Form.Group>
-		
-		<br></br>	
-				
+		<br></br>			
 		<Button type="submit" >Submit</Button>
-				
-
 		</Form>
-
 		<p style={{display: "inline-block",
 				width: `${width*20}px`,
-				height: `${length*30}px`,
+				height: `${length*20}px`,
 				background: "#80461b",
 				margin: "5px"
 			}}>{name}<br></br>{sun}<br></br>
 			</p>
-			
-
-
 		</div>
 	)
 }
