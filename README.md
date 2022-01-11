@@ -2,7 +2,7 @@
 
 ## To start Garden Plots
 
-From this folder (Garden Plot), enter 'rails s' from the terminal window to start the server. Then,
+From this folder (Garden Plot), enter 'rails s -p 4000' from the terminal window to start the server. Then,
 enter npm start --prefix client to start the frontend server. 
 
 ## Description
@@ -35,10 +35,9 @@ npm install --prefix frontend
 
 You can use the following commands to run the application:
 
-- `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
+- `rails s -p 4000`: run the backend on [http://localhost:3000](http://localhost:3000)
 - `npm start --prefix client`: run the frontend on
-  [http://localhost:4000](http://localhost:4000)
-- `rails start`: run the frontend and backend together with one command
+  [http://localhost:4000](http://localhost:3000)
 
 
 
